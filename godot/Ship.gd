@@ -2,6 +2,8 @@ extends RigidBody2D
 
 class_name Ship
 
+var aim = 0.0
+
 var type setget set_type
 
 func set_type(v):
@@ -22,7 +24,7 @@ const stats = {
 		'bullet_lifetime': 1.0
 	},
 	'south': {
-		'speed': {'x': 55, 'y': 0}
+		'speed': {'x': 70, 'y': 0}
 	}
 }
 
@@ -32,13 +34,24 @@ func _physics_process(delta):
 	
 	apply_central_impulse(Vector2(stats[type]['speed']['x']*command_x, stats[type]['speed']['y']*command_y))
 	
+	var aim_x = Input.get_action_strength("westship_aim_right")-Input.get_action_strength("westship_aim_left")
+	var aim_y = Input.get_action_strength("westship_aim_down")-Input.get_action_strength("westship_aim_up")
+	
+	if not(aim_x == 0 and aim_y == 0):
+		aim = atan2(aim_x,-aim_y) - PI
+
 signal fire
+var fire_t = 0
 
 func _process(delta):
-	if Input.is_action_just_pressed("northship_fire") or Input.is_action_just_pressed("eastship_fire"):
+	if type == 'west':
+		fire_t += delta
+		if fire_t > 0.1:
+			fire_t -= 0.1
+			emit_signal('fire', 'continuous', stats[type]['bullet_lifetime'])
+	
+	if type == 'north' and Input.is_action_just_pressed("northship_fire") or type == 'east' and Input.is_action_just_pressed("eastship_fire"):
 		emit_signal('fire', 'normal', stats[type]['bullet_lifetime'])
-	elif Input.is_action_just_pressed("eastship_fire_alt"):
+	elif type == 'east' and Input.is_action_just_pressed("eastship_fire_alt"):
 		emit_signal('fire', 'reversed', stats[type]['bullet_lifetime'])
 	
-	if int(floor(delta*1000)) % 100 == 0:
-		emit_signal('fire', 'continuous', stats[type]['bullet_lifetime'])
