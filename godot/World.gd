@@ -9,7 +9,9 @@ func set_ship_type(type):
 	$Schematics.texture = load('res://assets/'+type+'_controls.png')
 	
 
-
 func _on_1UP_picked(type):
 	set_ship_type(type)
+	
+func _on_DeathWall_body_entered(body):
+	body.queue_free()
 	

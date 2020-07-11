@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
@@ -13,6 +13,12 @@ extents = Vector2( 32, 512 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 512, 32 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 768, 32 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 32, 768 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
@@ -37,7 +43,11 @@ texture = ExtResource( 2 )
 position = Vector2( 256, 320 )
 
 [node name="OuterWalls" type="StaticBody2D" parent="."]
+collision_layer = 4
 physics_material_override = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 0, 512 )
@@ -54,4 +64,28 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 448, 0 )
 shape = SubResource( 2 )
+
+[node name="DeathWall" type="Area2D" parent="."]
+position = Vector2( 0, 1248 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="DeathWall"]
+position = Vector2( 448, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="DeathWall"]
+position = Vector2( 448, -1600 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="DeathWall"]
+position = Vector2( -288, -800 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="DeathWall"]
+position = Vector2( 1184, -800 )
+shape = SubResource( 5 )
 [connection signal="picked" from="OneUP" to="." method="_on_1UP_picked"]
+[connection signal="body_entered" from="DeathWall" to="." method="_on_DeathWall_body_entered"]
