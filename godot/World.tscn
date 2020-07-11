@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 [ext_resource path="res://1UP.tscn" type="PackedScene" id=4]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 512 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 512, 32 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
@@ -26,4 +35,23 @@ texture = ExtResource( 2 )
 
 [node name="OneUP" parent="." instance=ExtResource( 4 )]
 position = Vector2( 256, 320 )
+
+[node name="OuterWalls" type="StaticBody2D" parent="."]
+physics_material_override = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2( 0, 512 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2( 832, 512 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2( 448, 1024 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2( 448, 0 )
+shape = SubResource( 2 )
 [connection signal="picked" from="OneUP" to="." method="_on_1UP_picked"]
