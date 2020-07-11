@@ -32,6 +32,7 @@ func _physics_process(delta):
 signal fire
 
 func _process(delta):
-	if Input.is_action_just_pressed("northship_fire"):
+	if Input.is_action_just_pressed("northship_fire") or Input.is_action_just_pressed("eastship_fire"):
 		emit_signal('fire', 'normal')
-	
+	elif Input.is_action_just_pressed("eastship_fire_alt"):
+		emit_signal('fire', 'reversed')
