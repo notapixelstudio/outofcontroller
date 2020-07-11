@@ -17,16 +17,15 @@ func _on_1UP_picked(type):
 func _on_DeathWall_body_entered(body):
 	body.queue_free()
 	
-func _on_Ship_fire(mode):
+func _on_Ship_fire(mode, lifetime):
 	var bullet = Bullet.instance()
 	add_child(bullet)
+	bullet.lifetime = lifetime
 	
 	if mode == 'normal':
 		bullet.position = $Ship.position + Vector2(0, -64)
 		bullet.linear_velocity = Vector2(0, -500)
-		bullet.lifetime = 0.75
 	elif mode == 'reversed':
 		bullet.position = $Ship.position + Vector2(0, 64)
 		bullet.rotation_degrees = 180
 		bullet.linear_velocity = Vector2(0, 500)
-		bullet.lifetime = 0.75

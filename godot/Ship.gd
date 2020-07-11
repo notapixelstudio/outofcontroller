@@ -10,13 +10,16 @@ func set_type(v):
 
 const stats = {
 	'north': {
-		'speed': {'x': 50, 'y': 30}
+		'speed': {'x': 50, 'y': 30},
+		'bullet_lifetime': 0.75
 	},
 	'east': {
-		'speed': {'x': 55, 'y': 35}
+		'speed': {'x': 55, 'y': 35},
+		'bullet_lifetime': 0.5
 	},
 	'west': {
-		'speed': {'x': 40, 'y': 25}
+		'speed': {'x': 40, 'y': 25},
+		'bullet_lifetime': 1.0
 	},
 	'south': {
 		'speed': {'x': 55, 'y': 0}
@@ -33,6 +36,9 @@ signal fire
 
 func _process(delta):
 	if Input.is_action_just_pressed("northship_fire") or Input.is_action_just_pressed("eastship_fire"):
-		emit_signal('fire', 'normal')
+		emit_signal('fire', 'normal', stats[type]['bullet_lifetime'])
 	elif Input.is_action_just_pressed("eastship_fire_alt"):
-		emit_signal('fire', 'reversed')
+		emit_signal('fire', 'reversed', stats[type]['bullet_lifetime'])
+	
+	if int(floor(delta*1000)) % 100 == 0:
+		emit_signal('fire', 'continuous', stats[type]['bullet_lifetime'])
