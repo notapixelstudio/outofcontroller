@@ -29,3 +29,9 @@ func _physics_process(delta):
 	
 	apply_central_impulse(Vector2(stats[type]['speed']['x']*command_x, stats[type]['speed']['y']*command_y))
 	
+signal fire
+
+func _process(delta):
+	if Input.is_action_just_pressed("northship_fire"):
+		emit_signal('fire', 'normal')
+	

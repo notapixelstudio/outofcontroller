@@ -40,7 +40,7 @@ position = Vector2( 1120, 800 )
 texture = ExtResource( 2 )
 
 [node name="OneUP" parent="." instance=ExtResource( 4 )]
-position = Vector2( 256, 320 )
+position = Vector2( 224, -96 )
 
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -67,7 +67,8 @@ shape = SubResource( 2 )
 
 [node name="DeathWall" type="Area2D" parent="."]
 position = Vector2( 0, 1248 )
-collision_layer = 4
+collision_layer = 524288
+collision_mask = 1048575
 __meta__ = {
 "_edit_group_": true
 }
@@ -87,5 +88,6 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( 1184, -800 )
 shape = SubResource( 5 )
+[connection signal="fire" from="Ship" to="." method="_on_Ship_fire"]
 [connection signal="picked" from="OneUP" to="." method="_on_1UP_picked"]
 [connection signal="body_entered" from="DeathWall" to="." method="_on_DeathWall_body_entered"]
