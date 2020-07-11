@@ -4,7 +4,7 @@ var Bullet = preload('res://Bullet.tscn')
 
 func _ready():
 	set_ship_type('north')
-	$OneUP.type = 'south'
+	$OneUP.type = 'east'
 	
 func set_ship_type(type):
 	$Ship.type = type
