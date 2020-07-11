@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ships/Ship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
+[ext_resource path="res://1UP.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
@@ -22,3 +23,7 @@ __meta__ = {
 [node name="Schematics" type="Sprite" parent="."]
 position = Vector2( 1120, 800 )
 texture = ExtResource( 2 )
+
+[node name="OneUP" parent="." instance=ExtResource( 4 )]
+position = Vector2( 256, 320 )
+[connection signal="picked" from="OneUP" to="." method="_on_1UP_picked"]

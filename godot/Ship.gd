@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+class_name Ship
+
 var type setget set_type
 
 func set_type(v):
