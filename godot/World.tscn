@@ -5,4 +5,13 @@
 [node name="World" type="Node2D"]
 
 [node name="NorthShip" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 800 )
+position = Vector2( 416, 896 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 832.0
+margin_right = 1408.0
+margin_bottom = 1024.0
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
