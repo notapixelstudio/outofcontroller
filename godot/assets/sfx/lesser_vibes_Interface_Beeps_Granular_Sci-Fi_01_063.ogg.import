@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lesser_vibes_Interface_Beeps_Granular_Sci-Fi_01_063.ogg-5e66892937c037efbd381dc42aada523.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/lesser_vibes_Interface_Beeps_Granular_Sci-Fi_01_063.ogg"
+dest_files=[ "res://.import/lesser_vibes_Interface_Beeps_Granular_Sci-Fi_01_063.ogg-5e66892937c037efbd381dc42aada523.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

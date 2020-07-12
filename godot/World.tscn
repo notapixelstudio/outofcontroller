@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://HUD/LifeCounter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/heart.png" type="Texture" id=9]
 [ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/sfx/lesser_vibes_Interface_Beeps_Granular_Sci-Fi_01_063.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sfx/zapsplat_science_fiction_computer_tone_feedback_notify_002_41860.ogg" type="AudioStream" id=12]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
@@ -423,6 +425,12 @@ bus = "BGM"
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="CoinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="SblorchSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 [connection signal="damaged" from="Ship" to="." method="_on_Ship_damaged"]
 [connection signal="fire" from="Ship" to="." method="_on_Ship_fire"]
 [connection signal="picked" from="Coin" to="." method="_on_Coin_picked"]

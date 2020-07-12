@@ -1,8 +1,8 @@
 extends RigidBody2D
 
-signal score
+signal dead
 
 func harm(body):
-	emit_signal('score', 25, position)
+	emit_signal('dead', 25, position)
 	queue_free()
 	

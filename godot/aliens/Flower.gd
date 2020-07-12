@@ -16,12 +16,12 @@ func _on_Timer_timeout():
 	reset()
 	emit_signal('shoot')
 	
-signal score
+signal dead
 
 func harm(body):
 	life -= 1
 	if life <= 0:
-		emit_signal('score', 500, position)
+		emit_signal('dead', 500, position)
 		queue_free()
 		
 func _process(delta):
