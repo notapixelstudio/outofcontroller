@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/sfx/lesser_vibes_Interface_Beeps_Granular_Sci-Fi_01_063.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/sfx/zapsplat_science_fiction_computer_tone_feedback_notify_002_41860.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/sfx/lesser_vibes_HTIS_Micro_High_Tech_11_026.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/fonts/telegrama_render.otf" type="DynamicFontData" id=14]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
@@ -28,27 +29,30 @@ orbit_velocity_random = 0.0
 scale = 0.1
 scale_random = 1.0
 
-[sub_resource type="DynamicFont" id=8]
-size = 96
-font_data = ExtResource( 10 )
+[sub_resource type="DynamicFont" id=2]
+size = 72
+font_data = ExtResource( 14 )
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=3]
 friction = 0.0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 32, 512 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 512, 32 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 2048, 32 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 32, 768 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "level"
+[sub_resource type="DynamicFont" id=8]
+size = 48
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=9]
 length = 450.0
 step = 0.5
 tracks/0/type = "audio"
@@ -312,7 +316,7 @@ margin_left = -64.0
 margin_top = -160.0
 margin_right = 64.0
 margin_bottom = 75.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 2 )
 text = "5
 "
 align = 1
@@ -325,7 +329,7 @@ position = Vector2( 416, 96 )
 
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_layer = 4
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -333,19 +337,19 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 0, 512 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 832, 512 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 448, 1024 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 448, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="DeathWall" type="Area2D" parent="."]
 position = Vector2( 0, 1248 )
@@ -357,19 +361,19 @@ __meta__ = {
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( 448, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( 448, -1600 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( -864, -800 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( 1952, -800 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -382,44 +386,110 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Schematics" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 1120, 800 )
-texture = ExtResource( 2 )
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+margin_left = 864.0
+margin_top = 288.0
+margin_right = 1376.0
+margin_bottom = 384.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="LifeCounter" parent="CanvasLayer" instance=ExtResource( 8 )]
-position = Vector2( 1024, 448 )
+[node name="ColorRect4" type="ColorRect" parent="CanvasLayer"]
+margin_left = 864.0
+margin_top = 480.0
+margin_right = 1376.0
+margin_bottom = 992.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="heart" type="Sprite" parent="CanvasLayer/LifeCounter"]
-position = Vector2( -64, 52 )
-texture = ExtResource( 9 )
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
+margin_left = 864.0
+margin_top = 96.0
+margin_right = 1376.0
+margin_bottom = 192.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+margin_left = 864.0
+margin_top = 224.0
+margin_right = 1376.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 8 )
+text = "SCORE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel2" type="Label" parent="CanvasLayer"]
+margin_left = 864.0
+margin_top = 416.0
+margin_right = 1376.0
+margin_bottom = 480.0
+custom_fonts/font = SubResource( 8 )
+text = "CURRENT SHIP"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Time" type="Label" parent="CanvasLayer"]
-margin_left = 992.0
-margin_top = 64.0
-margin_right = 1222.0
-margin_bottom = 299.0
+margin_left = 896.0
+margin_top = 114.0
+margin_right = 1344.0
+margin_bottom = 187.0
+custom_fonts/font = SubResource( 2 )
+text = "TIME"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer"]
+margin_left = 864.0
+margin_top = 32.0
+margin_right = 1376.0
+margin_bottom = 96.0
 custom_fonts/font = SubResource( 8 )
-text = "TIME
-"
+text = "TIME"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Score" type="Label" parent="CanvasLayer"]
-margin_left = 992.0
-margin_top = 256.0
-margin_right = 1222.0
-margin_bottom = 491.0
-custom_fonts/font = SubResource( 8 )
-text = "SCORE
-"
+margin_left = 896.0
+margin_top = 306.0
+margin_right = 1344.0
+margin_bottom = 379.0
+custom_fonts/font = SubResource( 2 )
+text = "SCORE"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LifeCounter" parent="CanvasLayer" instance=ExtResource( 8 )]
+position = Vector2( 1056, 512 )
+
+[node name="heart" type="Sprite" parent="CanvasLayer/LifeCounter"]
+position = Vector2( -64, 52 )
+texture = ExtResource( 9 )
+
+[node name="Schematics" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 1120, 800 )
+texture = ExtResource( 2 )
+
 [node name="Orchestrator" type="AnimationPlayer" parent="."]
 autoplay = "level"
-anims/level = SubResource( 7 )
+anims/level = SubResource( 9 )
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 bus = "BGM"

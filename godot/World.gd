@@ -7,6 +7,30 @@ var unlocked_ships = {
 	'north': true
 }
 
+func comma_sep(number):
+	var string = str(number)
+	var mod = string.length() % 3
+	var res = ""
+	
+	for i in range(0, string.length()):
+		if i != 0 && i % 3 == mod:
+			res += ","
+		res += string[i]
+	
+	return res
+
+
+var timeformat = "{min}:{sec}"
+func sec_to_min(seconds: float) -> String:
+	var m = int(floor(seconds/60))
+	var s = int(floor(seconds))%60
+	var ms = stepify(seconds,0.1) - int(seconds)
+	s = s + ms
+	var ss: String = "0"+str(s) if s < 10 else str(s)
+	if ss.find(".") < 0:
+		ss = ss+".0"
+	return timeformat.format({"min": m, "sec": ss})
+
 func _ready():
 	randomize()
 	set_ship_type('north')
@@ -14,11 +38,11 @@ func _ready():
 var t = 0.0
 func _process(delta):
 	t += delta
-	$CanvasLayer/Time.text = str(int(floor(t)))
+	$CanvasLayer/Time.text = sec_to_min(t)
 	if $Ship:
 		$Ship/Countdown.text = str(int(ceil($DeathTimer.time_left)))
 		
-	$CanvasLayer/Score.text = str(score)
+	$CanvasLayer/Score.text = comma_sep(score)
 
 func set_ship_type(type):
 	$Ship.type = type
