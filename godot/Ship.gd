@@ -58,13 +58,17 @@ func _process(delta):
 			fire_t += delta
 			if fire_t > 0.1:
 				fire_t -= 0.1
-				emit_signal('fire', 'continuous', stats[type]['bullet_lifetime'])
+				fire('continuous')
 		
 		if type == 'north' and Input.is_action_just_pressed("northship_fire") or type == 'east' and Input.is_action_just_pressed("eastship_fire"):
-			emit_signal('fire', 'normal', stats[type]['bullet_lifetime'])
+			fire('normal')
 		elif type == 'east' and Input.is_action_just_pressed("eastship_fire_alt"):
-			emit_signal('fire', 'reversed', stats[type]['bullet_lifetime'])
+			fire('reversed')
 	
+func fire(mode):
+	$FireSFX.stream.loop = false
+	$FireSFX.play()
+	emit_signal('fire', mode, stats[type]['bullet_lifetime'])
 
 signal damaged
 func _on_Ship_body_entered(body):

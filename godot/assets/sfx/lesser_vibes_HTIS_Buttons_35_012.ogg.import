@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lesser_vibes_HTIS_Buttons_35_012.ogg-8d1c4a5a209df2b141bac84d9973ab22.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/lesser_vibes_HTIS_Buttons_35_012.ogg"
+dest_files=[ "res://.import/lesser_vibes_HTIS_Buttons_35_012.ogg-8d1c4a5a209df2b141bac84d9973ab22.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

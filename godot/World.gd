@@ -27,6 +27,8 @@ func set_ship_type(type):
 
 func _on_1UP_picked(type):
 	set_ship_type(type)
+	$OneUPSFX.stream.loop = false
+	$OneUPSFX.play()
 	$CanvasLayer/LifeCounter.reset()
 	$Ship.dying = false
 	$Ship/Countdown.visible = false
@@ -102,7 +104,7 @@ func _on_LifeCounter_dead():
 	spawn_1up()
 	
 const field_w = 832
-const margin = 48
+const margin = 96
 
 const Blob = preload('res://aliens/Blob.tscn')
 func spawn_blob(amount = 1):
