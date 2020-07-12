@@ -3,6 +3,9 @@ extends Node2D
 var Bullet = preload('res://Bullet.tscn')
 
 var score = 0
+var unlocked_ships = {
+	'north': true
+}
 
 func _ready():
 	randomize()
@@ -78,6 +81,9 @@ func _on_LifeCounter_dead():
 	$DeathTimer.start(5.0)
 	$Ship/Countdown.visible = true
 	
+	# give the opportunity to live
+	spawn_1up()
+	
 const field_w = 832
 const margin = 48
 
@@ -99,7 +105,13 @@ func spawn_flower(amount = 1):
 		alien.connect('shoot', self, '_on_Flower_shoot', [alien])
 	
 const OneUp = preload('res://1UP.tscn')
-func spawn_1up(type):
+func spawn_1up(type = null):
+	if type:
+		unlocked_ships[type] = true
+	else:
+		var types = unlocked_ships.keys()
+		type = types[randi()%len(types)]
+	
 	var object = OneUp.instance()
 	object.position = Vector2(margin+randi()%(field_w-margin), -64)
 	add_child(object)

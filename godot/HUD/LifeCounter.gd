@@ -19,6 +19,9 @@ func refresh():
 	$hearts_empty.region_rect = Rect2(Vector2(0,0), Vector2(48*max_life,96))
 	
 func lose_life(amount):
+	if life <= 0:
+		return
+		
 	set_life(max(0, life - amount))
 	
 func reset():
