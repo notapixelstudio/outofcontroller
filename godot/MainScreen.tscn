@@ -75,17 +75,10 @@ margin_bottom = 112.0
 custom_fonts/font = SubResource( 2 )
 text = "LEADERBOARD"
 
-[node name="Credits" type="Button" parent="Control"]
+[node name="Quit" type="Button" parent="Control"]
 margin_top = 116.0
 margin_right = 297.0
 margin_bottom = 170.0
-custom_fonts/font = SubResource( 2 )
-text = "CREDITS"
-
-[node name="Quit" type="Button" parent="Control"]
-margin_top = 174.0
-margin_right = 297.0
-margin_bottom = 228.0
 custom_fonts/font = SubResource( 2 )
 text = "QUIT"
 
@@ -100,5 +93,4 @@ custom_fonts/font = SubResource( 3 )
 text = "OUT OF CONTROLLER"
 [connection signal="pressed" from="Control/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Control/Leaderboard" to="." method="_on_Leaderboard_pressed"]
-[connection signal="pressed" from="Control/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Control/Quit" to="." method="_on_Quit_pressed"]
