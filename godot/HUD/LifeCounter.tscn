@@ -11,11 +11,10 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 760, 260 )
+region_rect = Rect2( 0, 0, 232, 96 )
 
 [node name="hearts" type="Sprite" parent="."]
-position = Vector2( 10, 3 )
 texture = ExtResource( 3 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 750, 260 )
+region_rect = Rect2( 0, 0, 232, 96 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
@@ -6,8 +6,10 @@
 [ext_resource path="res://1UP.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/star.png" type="Texture" id=5]
 [ext_resource path="res://assets/black.png" type="Texture" id=6]
-[ext_resource path="res://aliens/Blob.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/septahelix_-_Good_And_Evil_Is_Evil.ogg" type="AudioStream" id=7]
 [ext_resource path="res://HUD/LifeCounter.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/heart.png" type="Texture" id=9]
+[ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=10]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
@@ -37,6 +39,49 @@ extents = Vector2( 2048, 32 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 32, 768 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 96
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "level"
+length = 450.0
+step = 1.0
+tracks/0/type = "audio"
+tracks/0/path = NodePath("BGM")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 6, 9, 12 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+} ]
+}
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
@@ -125,12 +170,32 @@ position = Vector2( 1120, 800 )
 texture = ExtResource( 2 )
 
 [node name="LifeCounter" parent="CanvasLayer" instance=ExtResource( 8 )]
-position = Vector2( 992, 32 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 1024, 256 )
 
-[node name="Blob" parent="." instance=ExtResource( 7 )]
-position = Vector2( 416, -96 )
+[node name="heart" type="Sprite" parent="CanvasLayer/LifeCounter"]
+position = Vector2( -64, 52 )
+texture = ExtResource( 9 )
+
+[node name="Time" type="Label" parent="CanvasLayer"]
+margin_left = 992.0
+margin_top = 64.0
+margin_right = 1222.0
+margin_bottom = 299.0
+custom_fonts/font = SubResource( 8 )
+text = "TIME
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Orchestrator" type="AnimationPlayer" parent="."]
+autoplay = "level"
+anims/level = SubResource( 7 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+bus = "BGM"
 [connection signal="damaged" from="Ship" to="." method="_on_Ship_damaged"]
 [connection signal="fire" from="Ship" to="." method="_on_Ship_fire"]
 [connection signal="picked" from="OneUP" to="." method="_on_1UP_picked"]
 [connection signal="body_entered" from="DeathWall" to="." method="_on_DeathWall_body_entered"]
+[connection signal="dead" from="CanvasLayer/LifeCounter" to="." method="_on_LifeCounter_dead"]

@@ -6,6 +6,11 @@ func _ready():
 	set_ship_type('north')
 	$OneUP.type = 'west'
 	
+var t = 0.0
+func _process(delta):
+	t += delta
+	$CanvasLayer/Time.text = str(int(floor(t)))
+	
 func set_ship_type(type):
 	$Ship.type = type
 	$CanvasLayer/Schematics.texture = load('res://assets/'+type+'_controls.png')
@@ -37,4 +42,18 @@ func _on_Ship_fire(mode, lifetime):
 
 func _on_Ship_damaged():
 	$CanvasLayer/LifeCounter.lose_life(1)
+	
+
+
+func _on_LifeCounter_dead():
+	$Ship.queue_free()
+	
+const field_w = 832
+const margin = 48
+
+const Blob = preload('res://aliens/Blob.tscn')
+func spawn_blob():
+	var alien = Blob.instance()
+	alien.position = Vector2(margin+randi()%(field_w-margin), -64)
+	add_child(alien)
 	
