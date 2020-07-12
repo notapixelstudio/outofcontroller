@@ -3,9 +3,15 @@ extends RigidBody2D
 class_name Ship
 
 var aim = 0.0
-var dying = false
-
+var dying = false setget set_dying
 var type setget set_type
+
+func set_dying(v):
+	dying = v
+	if dying:
+		$Sprite/AnimationPlayer.play("dying")
+	else:
+		$Sprite/AnimationPlayer.play("default")
 
 func set_type(v):
 	type = v
@@ -64,6 +70,8 @@ func _on_Ship_body_entered(body):
 		harm(body)
 		
 func harm(body = null):
+	$HarmSFX.stream.loop = false
+	$HarmSFX.play()
 	emit_signal('damaged')
 	if body:
 		apply_central_impulse(10*(position-body.position))
