@@ -33,7 +33,7 @@ func sec_to_min(seconds: float) -> String:
 
 func _ready():
 	randomize()
-	set_ship_type('west')
+	set_ship_type('north')
 	
 var t = 0.0
 func _process(delta):
