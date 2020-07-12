@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/zapsplat_science_fiction_console_computer_alarm_ring_loop_002_30733.ogg-047b49e1c95c3b40eb33c240c54ff774.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/zapsplat_science_fiction_console_computer_alarm_ring_loop_002_30733.ogg"
+dest_files=[ "res://.import/zapsplat_science_fiction_console_computer_alarm_ring_loop_002_30733.ogg-047b49e1c95c3b40eb33c240c54ff774.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

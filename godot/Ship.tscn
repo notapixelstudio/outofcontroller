@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/northship.png" type="Texture" id=1]
 [ext_resource path="res://Ship.gd" type="Script" id=2]
 [ext_resource path="res://assets/light.png" type="Texture" id=3]
 [ext_resource path="res://assets/sfx/zapsplat_science_fiction_console_error_tone_002_38433.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/zapsplat_science_fiction_console_computer_alarm_ring_loop_002_30733.ogg" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Glow"
@@ -92,4 +93,7 @@ shape = SubResource( 2 )
 [node name="HarmSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "SFX"
+
+[node name="DyingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]

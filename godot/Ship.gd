@@ -9,8 +9,10 @@ var type setget set_type
 func set_dying(v):
 	dying = v
 	if dying:
+		$DyingSFX.play()
 		$Sprite/AnimationPlayer.play("dying")
 	else:
+		$DyingSFX.stop()
 		$Sprite/AnimationPlayer.play("default")
 
 func set_type(v):
