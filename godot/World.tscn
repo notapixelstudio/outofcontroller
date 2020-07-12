@@ -52,7 +52,7 @@ extents = Vector2( 32, 768 )
 size = 48
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 resource_name = "blink"
 length = 3.0
 tracks/0/type = "value"
@@ -68,7 +68,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.247059 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.247059 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.247059 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 450.0
 step = 0.5
 tracks/0/type = "audio"
@@ -92,8 +92,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 3, 6, 9, 10, 12, 14, 15, 16, 18, 24, 24.5, 26, 27, 28, 30, 32, 33, 34, 35, 36, 39, 40, 45, 46, 47, 48, 50, 52, 56, 59, 60, 64, 66, 68, 70, 72, 74, 76, 77, 77.5, 78, 79, 80, 81, 82, 84, 85, 85.5, 88, 91, 92, 94, 95, 96, 97, 98, 100, 104, 105, 108, 109, 111, 112, 113, 114, 116, 116.5, 118 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 3, 6, 9, 10, 12, 14, 15, 16, 18, 24, 24.5, 26, 27, 28, 30, 32, 33, 34, 35, 36, 39, 40, 45, 46, 47, 48, 50, 52, 56, 59, 60, 64, 66, 68, 70, 72, 74, 76, 77, 77.5, 78, 79, 80, 81, 82, 84, 85, 85.5, 88, 91, 92, 94, 95, 96, 97, 98, 100, 104, 105, 108, 109, 111, 112, 113, 114, 116, 116.5, 118, 120, 122, 123, 126, 130 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "spawn_coin"
@@ -298,6 +298,21 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "spawn_coin"
+}, {
+"args": [ "south" ],
+"method": "spawn_1up"
+}, {
+"args": [ 2 ],
+"method": "spawn_blob"
+}, {
+"args": [ 2 ],
+"method": "spawn_blob"
+}, {
+"args": [ null ],
+"method": "spawn_flower"
+}, {
+"args": [ null ],
+"method": "spawn_blob"
 } ]
 }
 
@@ -503,11 +518,11 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Schematics"]
 playback_speed = 3.0
-anims/blink = SubResource( 10 )
+anims/blink = SubResource( 9 )
 
 [node name="Orchestrator" type="AnimationPlayer" parent="."]
 autoplay = "level"
-anims/level = SubResource( 9 )
+anims/level = SubResource( 10 )
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 bus = "BGM"
