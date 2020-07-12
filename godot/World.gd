@@ -187,4 +187,4 @@ func gameover(score):
 	var g_scene = load("res://GameOver.tscn")
 	var gameover = g_scene.instance()
 	$CanvasLayer.add_child(gameover)
-	gameover.start(1.0)
+	gameover.start(score)

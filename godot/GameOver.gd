@@ -10,10 +10,10 @@ func _ready():
 	visible = false
 	
 	
-func start(time):
+func start(_score):
 	visible = true
 	anim.play("Appears")
-	score = time
+	score = _score
 	# score_label.text = global.sec_to_min(score)
 	yield(anim, "animation_finished")
 	$SendToLeaderboard/Name.grab_focus()
