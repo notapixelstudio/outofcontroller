@@ -156,6 +156,8 @@ func spawn_1up(type = null):
 	else:
 		var types = unlocked_ships.keys()
 		type = types[randi()%len(types)]
+		while $Ship and len(types) > 1 and $Ship.type == type:
+			type = types[randi()%len(types)] # FIXME horrible
 	
 	var object = OneUp.instance()
 	object.position = Vector2(margin+randi()%(field_w-margin), -64)
