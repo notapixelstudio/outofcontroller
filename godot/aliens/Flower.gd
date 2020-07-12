@@ -2,7 +2,7 @@ extends RigidBody2D
 
 signal shoot
 
-var life = 3
+var life = 5
 var target = null
 
 func _ready():

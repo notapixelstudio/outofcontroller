@@ -13,16 +13,16 @@ func set_type(v):
 
 const stats = {
 	'north': {
-		'speed': {'x': 50, 'y': 30},
-		'bullet_lifetime': 0.75
+		'speed': {'x': 50, 'y': 40},
+		'bullet_lifetime': 1.0
 	},
 	'east': {
-		'speed': {'x': 55, 'y': 35},
-		'bullet_lifetime': 0.75
+		'speed': {'x': 55, 'y': 45},
+		'bullet_lifetime': 1.0
 	},
 	'west': {
-		'speed': {'x': 40, 'y': 25},
-		'bullet_lifetime': 1.0
+		'speed': {'x': 40, 'y': 35},
+		'bullet_lifetime': 1.25
 	},
 	'south': {
 		'speed': {'x': 70, 'y': 0}

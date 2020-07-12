@@ -3,13 +3,16 @@ extends Node2D
 var Bullet = preload('res://Bullet.tscn')
 
 func _ready():
+	randomize()
 	set_ship_type('north')
 	
 var t = 0.0
 func _process(delta):
 	t += delta
 	$CanvasLayer/Time.text = str(int(floor(t)))
-	
+	if $Ship:
+		$Ship/Countdown.text = str(int(ceil($DeathTimer.time_left)))
+
 func set_ship_type(type):
 	$Ship.type = type
 	$CanvasLayer/Schematics.texture = load('res://assets/'+type+'_controls.png')
@@ -19,7 +22,11 @@ func _on_1UP_picked(type):
 	set_ship_type(type)
 	$CanvasLayer/LifeCounter.reset()
 	$Ship.dying = false
+	$Ship/Countdown.visible = false
 	$DeathTimer.stop()
+	
+func _on_Coin_picked():
+	pass
 	
 func _on_DeathWall_body_entered(body):
 	body.queue_free()
@@ -51,12 +58,13 @@ func _on_Blob_shoot(blob):
 const EvilBullet = preload('res://aliens/EvilBullet.tscn')
 func _on_Flower_shoot(flower):
 	if $Ship and flower:
-		var object = EvilBullet.instance()
-		object.lifetime = 0.8
-		object.position = flower.position + 96*($Ship.position-flower.position).normalized()
-		object.linear_velocity = 300*($Ship.position-flower.position).normalized()
-		object.rotation = ($Ship.position-flower.position).angle() + PI/2
-		add_child(object)
+		for angle in [-PI/6, 0, PI/6]:
+			var object = EvilBullet.instance()
+			object.position = flower.position + 96*($Ship.position-flower.position).normalized().rotated(angle)
+			object.linear_velocity = 500*($Ship.position-flower.position).normalized().rotated(angle)
+			object.rotation = ($Ship.position-flower.position).angle() + PI/2 + angle
+			add_child(object)
+			object.lifetime = 1.0
 
 func _on_Ship_damaged():
 	$CanvasLayer/LifeCounter.lose_life(1)
@@ -64,6 +72,7 @@ func _on_Ship_damaged():
 func _on_LifeCounter_dead():
 	$Ship.dying = true
 	$DeathTimer.start(5.0)
+	$Ship/Countdown.visible = true
 	
 const field_w = 832
 const margin = 48
@@ -93,7 +102,13 @@ func spawn_1up(type):
 	object.type = type
 	object.connect('picked', self, '_on_1UP_picked')
 	
-
+const Coin = preload('res://Coin.tscn')
+func spawn_coin():
+	var object = Coin.instance()
+	object.position = Vector2(margin+randi()%(field_w-margin), -64)
+	add_child(object)
+	object.connect('picked', self, '_on_Coin_picked')
 
 func _on_DeathTimer_timeout():
-	$Ship.queue_free()
+	if $Ship:
+		$Ship.queue_free()

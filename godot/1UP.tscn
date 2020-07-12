@@ -10,7 +10,7 @@ radius = 30.0
 radius = 60.0
 
 [node name="1UP" type="RigidBody2D"]
-collision_layer = 2
+collision_layer = 262144
 mode = 2
 gravity_scale = 0.25
 linear_damp = 0.0
