@@ -141,6 +141,19 @@
          stdDeviation="1.3014479"
          inkscape:collect="always" />
     </filter>
+    <filter
+       height="2.0205421"
+       y="-0.51027107"
+       width="2.0205421"
+       x="-0.51027107"
+       id="filter1937"
+       style="color-interpolation-filters:sRGB"
+       inkscape:collect="always">
+      <feGaussianBlur
+         id="feGaussianBlur1939"
+         stdDeviation="11.082155"
+         inkscape:collect="always" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -149,9 +162,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="574.96511"
-     inkscape:cy="1006.8854"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="558.4438"
+     inkscape:cy="1068.4331"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1093,5 +1106,23 @@
        id="path1481"
        inkscape:export-xdpi="299"
        inkscape:export-ydpi="299" />
+    <circle
+       inkscape:export-ydpi="299"
+       inkscape:export-xdpi="299"
+       transform="matrix(0.22753426,0,0,0.22753426,105.93091,84.636348)"
+       r="26.061806"
+       cy="83.504669"
+       cx="163.19528"
+       id="path1667"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.74424;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.5;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter1937)" />
+    <rect
+       inkscape:export-ydpi="54.515282"
+       inkscape:export-xdpi="54.515282"
+       y="279.55853"
+       x="161.70926"
+       height="4.6592479"
+       width="4.6592479"
+       id="rect1941"
+       style="opacity:1;fill:#030303;fill-opacity:1;stroke:none;stroke-width:0.396875;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.5;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

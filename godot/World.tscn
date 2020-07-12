@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 [ext_resource path="res://1UP.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/star.png" type="Texture" id=5]
+[ext_resource path="res://assets/black.png" type="Texture" id=6]
 
 [sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
@@ -39,6 +40,11 @@ extents = Vector2( 32, 768 )
 script = ExtResource( 3 )
 
 [node name="Background" type="Node2D" parent="."]
+
+[node name="Black" type="Sprite" parent="Background"]
+position = Vector2( 414.75, 512 )
+scale = Vector2( 83.45, 102.4 )
+texture = ExtResource( 6 )
 
 [node name="Particles2D" type="Particles2D" parent="Background"]
 position = Vector2( 416, 0 )
