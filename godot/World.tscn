@@ -25,26 +25,27 @@ orbit_velocity_random = 0.0
 scale = 0.1
 scale_random = 1.0
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=8]
 size = 96
 font_data = ExtResource( 10 )
 
-[sub_resource type="PhysicsMaterial" id=3]
+[sub_resource type="PhysicsMaterial" id=2]
 friction = 0.0
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 32, 512 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 512, 32 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 2048, 32 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 32, 768 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
+resource_name = "level"
 length = 450.0
 step = 0.5
 tracks/0/type = "audio"
@@ -311,7 +312,7 @@ margin_left = -64.0
 margin_top = -160.0
 margin_right = 64.0
 margin_bottom = 75.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 8 )
 text = "5
 "
 align = 1
@@ -319,9 +320,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Coin" parent="." instance=ExtResource( 4 )]
+position = Vector2( 416, 96 )
+
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_layer = 4
-physics_material_override = SubResource( 3 )
+physics_material_override = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -329,19 +333,19 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 0, 512 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 832, 512 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 448, 1024 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2( 448, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="DeathWall" type="Area2D" parent="."]
 position = Vector2( 0, 1248 )
@@ -353,19 +357,19 @@ __meta__ = {
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( 448, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( 448, -1600 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( -864, -800 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="DeathWall"]
 position = Vector2( 1952, -800 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -394,7 +398,7 @@ margin_left = 992.0
 margin_top = 64.0
 margin_right = 1222.0
 margin_bottom = 299.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 8 )
 text = "TIME
 "
 __meta__ = {
@@ -406,7 +410,7 @@ margin_left = 992.0
 margin_top = 256.0
 margin_right = 1222.0
 margin_bottom = 491.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 8 )
 text = "SCORE
 "
 __meta__ = {
@@ -415,18 +419,16 @@ __meta__ = {
 
 [node name="Orchestrator" type="AnimationPlayer" parent="."]
 autoplay = "level"
-anims/level = SubResource( 8 )
+anims/level = SubResource( 7 )
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 bus = "BGM"
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 5.0
-
-[node name="Coin" parent="." instance=ExtResource( 4 )]
-position = Vector2( 416, 96 )
 [connection signal="damaged" from="Ship" to="." method="_on_Ship_damaged"]
 [connection signal="fire" from="Ship" to="." method="_on_Ship_fire"]
+[connection signal="picked" from="Coin" to="." method="_on_Coin_picked"]
 [connection signal="body_entered" from="DeathWall" to="." method="_on_DeathWall_body_entered"]
 [connection signal="dead" from="CanvasLayer/LifeCounter" to="." method="_on_LifeCounter_dead"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
