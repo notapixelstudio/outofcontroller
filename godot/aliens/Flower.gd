@@ -10,7 +10,7 @@ func _ready():
 
 func reset():
 	$Timer.stop()
-	$Timer.start(0.2+0.25*randf())
+	$Timer.start(0.3+0.5*randf())
 	
 func _on_Timer_timeout():
 	reset()

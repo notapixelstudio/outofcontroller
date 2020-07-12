@@ -17,7 +17,7 @@ const stats = {
 	},
 	'east': {
 		'speed': {'x': 55, 'y': 35},
-		'bullet_lifetime': 0.5
+		'bullet_lifetime': 0.75
 	},
 	'west': {
 		'speed': {'x': 40, 'y': 25},

@@ -68,9 +68,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 6, 9, 12, 15, 18, 26, 30, 34, 36, 40, 45, 46, 47, 48, 50, 52, 64, 72, 78, 82, 84, 86, 87, 88, 92, 100 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 6, 9, 12, 15, 16, 18, 26, 30, 34, 36, 40, 45, 46, 47, 48, 50, 52, 64, 70, 78, 82, 84, 86, 87, 88, 92, 100 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "spawn_blob"
+}, {
 "args": [  ],
 "method": "spawn_blob"
 }, {
@@ -113,7 +116,7 @@ tracks/1/keys = {
 "args": [ 2 ],
 "method": "spawn_blob"
 }, {
-"args": [ 3 ],
+"args": [ 2 ],
 "method": "spawn_blob"
 }, {
 "args": [ "north" ],
@@ -122,7 +125,7 @@ tracks/1/keys = {
 "args": [  ],
 "method": "spawn_flower"
 }, {
-"args": [ 2 ],
+"args": [  ],
 "method": "spawn_flower"
 }, {
 "args": [  ],
