@@ -47,7 +47,7 @@ func _process(delta):
 func set_ship_type(type):
 	$Ship.type = type
 	$CanvasLayer/Schematics.texture = load('res://assets/'+type+'_controls.png')
-	
+	$CanvasLayer/Schematics/AnimationPlayer.play('blink')
 
 func _on_1UP_picked(type):
 	set_ship_type(type)
