@@ -27,12 +27,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Out of Controller"
-run/main_scene="res://World.tscn"
+run/main_scene="res://MainScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+global="*res://global.gd"
 
 [display]
 
