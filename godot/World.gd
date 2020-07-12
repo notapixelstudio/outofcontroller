@@ -33,3 +33,8 @@ func _on_Ship_fire(mode, lifetime):
 		bullet.position = $Ship.position + Vector2(0, 64).rotated($Ship.aim)
 		bullet.rotation = $Ship.aim + PI
 		bullet.linear_velocity = Vector2(0, 500).rotated($Ship.aim)
+
+
+func _on_Ship_damaged():
+	$CanvasLayer/LifeCounter.lose_life(1)
+	

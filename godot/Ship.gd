@@ -55,3 +55,9 @@ func _process(delta):
 	elif type == 'east' and Input.is_action_just_pressed("eastship_fire_alt"):
 		emit_signal('fire', 'reversed', stats[type]['bullet_lifetime'])
 	
+
+signal damaged
+func _on_Ship_body_entered(body):
+	if body.is_in_group('harmful'):
+		emit_signal('damaged')
+		apply_central_impulse(10*(position-body.position))
