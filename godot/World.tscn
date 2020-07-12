@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/north_controls.png" type="Texture" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
-[ext_resource path="res://1UP.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/star.png" type="Texture" id=5]
 [ext_resource path="res://assets/black.png" type="Texture" id=6]
 [ext_resource path="res://assets/septahelix_-_Good_And_Evil_Is_Evil.ogg" type="AudioStream" id=7]
@@ -69,8 +68,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 6, 9, 12 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 6, 9, 12, 15, 18, 26, 30, 34, 36, 40, 45, 46, 47, 48, 50, 52, 64, 72, 78, 82, 84, 86, 87, 88, 92, 100 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "spawn_blob"
@@ -80,6 +79,75 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [ "east" ],
+"method": "spawn_1up"
+}, {
+"args": [ 2 ],
+"method": "spawn_blob"
+}, {
+"args": [ 3 ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [ 3 ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [ 2 ],
+"method": "spawn_blob"
+}, {
+"args": [ 3 ],
+"method": "spawn_blob"
+}, {
+"args": [ "north" ],
+"method": "spawn_1up"
+}, {
+"args": [  ],
+"method": "spawn_flower"
+}, {
+"args": [ 2 ],
+"method": "spawn_flower"
+}, {
+"args": [  ],
+"method": "spawn_flower"
+}, {
+"args": [ 2 ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [  ],
+"method": "spawn_blob"
+}, {
+"args": [ "east" ],
+"method": "spawn_1up"
+}, {
+"args": [  ],
+"method": "spawn_flower"
+}, {
+"args": [ "west" ],
+"method": "spawn_1up"
 } ]
 }
 
@@ -102,9 +170,6 @@ texture = ExtResource( 5 )
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
 position = Vector2( 416, 896 )
-
-[node name="OneUP" parent="." instance=ExtResource( 4 )]
-position = Vector2( 224, -96 )
 
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -170,7 +235,7 @@ position = Vector2( 1120, 800 )
 texture = ExtResource( 2 )
 
 [node name="LifeCounter" parent="CanvasLayer" instance=ExtResource( 8 )]
-position = Vector2( 1024, 256 )
+position = Vector2( 1024, 448 )
 
 [node name="heart" type="Sprite" parent="CanvasLayer/LifeCounter"]
 position = Vector2( -64, 52 )
@@ -188,6 +253,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Score" type="Label" parent="CanvasLayer"]
+margin_left = 992.0
+margin_top = 256.0
+margin_right = 1222.0
+margin_bottom = 491.0
+custom_fonts/font = SubResource( 8 )
+text = "SCORE
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Orchestrator" type="AnimationPlayer" parent="."]
 autoplay = "level"
 anims/level = SubResource( 7 )
@@ -196,6 +273,5 @@ anims/level = SubResource( 7 )
 bus = "BGM"
 [connection signal="damaged" from="Ship" to="." method="_on_Ship_damaged"]
 [connection signal="fire" from="Ship" to="." method="_on_Ship_fire"]
-[connection signal="picked" from="OneUP" to="." method="_on_1UP_picked"]
 [connection signal="body_entered" from="DeathWall" to="." method="_on_DeathWall_body_entered"]
 [connection signal="dead" from="CanvasLayer/LifeCounter" to="." method="_on_LifeCounter_dead"]

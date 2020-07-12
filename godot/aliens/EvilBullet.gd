@@ -1,6 +1,5 @@
 extends RigidBody2D
 
-class_name Bullet
 
 var lifetime = -1 setget set_lifetime
 
@@ -18,4 +17,5 @@ func _on_Bullet_body_entered(body):
 	queue_free()
 	
 func harm(body):
-	queue_free()
+	if body is Bullet:
+		queue_free()

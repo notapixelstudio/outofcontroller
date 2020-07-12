@@ -59,5 +59,10 @@ func _process(delta):
 signal damaged
 func _on_Ship_body_entered(body):
 	if body.is_in_group('harmful'):
-		emit_signal('damaged')
+		harm(body)
+		
+func harm(body = null):
+	emit_signal('damaged')
+	if body:
 		apply_central_impulse(10*(position-body.position))
+		
