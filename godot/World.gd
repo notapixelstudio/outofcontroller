@@ -179,4 +179,12 @@ func spawn_coin():
 
 func _on_DeathTimer_timeout():
 	if $Ship:
+		gameover(score)
 		$Ship.queue_free()
+
+func gameover(score):
+	set_process(false)
+	var g_scene = load("res://GameOver.tscn")
+	var gameover = g_scene.instance()
+	$CanvasLayer.add_child(gameover)
+	gameover.start(1.0)
