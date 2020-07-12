@@ -73,9 +73,21 @@ func add_item(player_name, score):
 	var item = ScoreItem.instance()
 	list_index += 1
 	item.get_node("Container/PlayerName").text = str(list_index) + str(". ") + player_name
-	item.get_node("Container/Score").text = str(score)
+	item.get_node("Container/Score").text = comma_sep(score)
 	item.margin_top = list_index * 100
 	$"Board/HighScores/ScoreItemContainer".add_child(item)
+	
+func comma_sep(number):
+	var string = str(number)
+	var mod = string.length() % 3
+	var res = ""
+	
+	for i in range(0, string.length()):
+		if i != 0 && i % 3 == mod:
+			res += ","
+		res += string[i]
+	
+	return res
 
 func add_no_scores_message():
 	var item = $"Board/MessageContainer/TextMessage"
