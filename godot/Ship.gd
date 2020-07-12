@@ -56,8 +56,8 @@ func _process(delta):
 	if not dying:
 		if type == 'west':
 			fire_t += delta
-			if fire_t > 0.1:
-				fire_t -= 0.1
+			if fire_t > 0.15:
+				fire_t -= 0.15
 				fire('continuous')
 		
 		if type == 'north' and Input.is_action_just_pressed("northship_fire") or type == 'east' and Input.is_action_just_pressed("eastship_fire"):
