@@ -320,6 +320,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Coin" parent="." instance=ExtResource( 4 )]
+position = Vector2( 416, 96 )
+
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_layer = 4
 physics_material_override = SubResource( 2 )
@@ -423,11 +426,9 @@ bus = "BGM"
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 5.0
-
-[node name="Coin" parent="." instance=ExtResource( 4 )]
-position = Vector2( 416, 96 )
 [connection signal="damaged" from="Ship" to="." method="_on_Ship_damaged"]
 [connection signal="fire" from="Ship" to="." method="_on_Ship_fire"]
+[connection signal="picked" from="Coin" to="." method="_on_Coin_picked"]
 [connection signal="body_entered" from="DeathWall" to="." method="_on_DeathWall_body_entered"]
 [connection signal="dead" from="CanvasLayer/LifeCounter" to="." method="_on_LifeCounter_dead"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

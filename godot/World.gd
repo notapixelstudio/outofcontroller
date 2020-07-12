@@ -2,6 +2,8 @@ extends Node2D
 
 var Bullet = preload('res://Bullet.tscn')
 
+var score = 0
+
 func _ready():
 	randomize()
 	set_ship_type('north')
@@ -12,6 +14,8 @@ func _process(delta):
 	$CanvasLayer/Time.text = str(int(floor(t)))
 	if $Ship:
 		$Ship/Countdown.text = str(int(ceil($DeathTimer.time_left)))
+		
+	$CanvasLayer/Score.text = str(score)
 
 func set_ship_type(type):
 	$Ship.type = type
@@ -26,7 +30,7 @@ func _on_1UP_picked(type):
 	$DeathTimer.stop()
 	
 func _on_Coin_picked():
-	pass
+	score += 300
 	
 func _on_DeathWall_body_entered(body):
 	body.queue_free()
