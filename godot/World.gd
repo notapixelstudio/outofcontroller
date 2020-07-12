@@ -32,8 +32,17 @@ func _on_1UP_picked(type):
 	$Ship/Countdown.visible = false
 	$DeathTimer.stop()
 	
-func _on_Coin_picked():
-	score += 300
+func _on_Coin_picked(coin):
+	add_score(300, coin.position)
+	
+const ScoreFeedback = preload('res://ScoreFeedback.tscn')
+func add_score(amount, where):
+	score += amount
+	
+	var object = ScoreFeedback.instance()
+	object.position = where
+	add_child(object)
+	object.score = amount
 	
 func _on_DeathWall_body_entered(body):
 	body.queue_free()
@@ -61,6 +70,7 @@ func _on_Blob_shoot(blob):
 		var object = LesserBlob.instance()
 		object.position = blob.position + 48*($Ship.position-blob.position).normalized()
 		add_child(object)
+		object.connect('score', self, 'add_score')
 		
 const EvilBullet = preload('res://aliens/EvilBullet.tscn')
 func _on_Flower_shoot(flower):
@@ -94,7 +104,8 @@ func spawn_blob(amount = 1):
 		alien.position = Vector2(margin+randi()%(field_w-margin), -64)
 		add_child(alien)
 		alien.connect('shoot', self, '_on_Blob_shoot', [alien])
-		
+		alien.connect('score', self, 'add_score')
+
 const Flower = preload('res://aliens/Flower.tscn')
 func spawn_flower(amount = 1):
 	for i in range(amount):
@@ -103,6 +114,7 @@ func spawn_flower(amount = 1):
 		alien.target = $Ship
 		add_child(alien)
 		alien.connect('shoot', self, '_on_Flower_shoot', [alien])
+		alien.connect('score', self, 'add_score')
 	
 const OneUp = preload('res://1UP.tscn')
 func spawn_1up(type = null):
