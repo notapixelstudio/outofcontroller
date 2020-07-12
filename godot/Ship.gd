@@ -3,6 +3,7 @@ extends RigidBody2D
 class_name Ship
 
 var aim = 0.0
+var dying = false
 
 var type setget set_type
 
@@ -44,16 +45,17 @@ signal fire
 var fire_t = 0
 
 func _process(delta):
-	if type == 'west':
-		fire_t += delta
-		if fire_t > 0.1:
-			fire_t -= 0.1
-			emit_signal('fire', 'continuous', stats[type]['bullet_lifetime'])
-	
-	if type == 'north' and Input.is_action_just_pressed("northship_fire") or type == 'east' and Input.is_action_just_pressed("eastship_fire"):
-		emit_signal('fire', 'normal', stats[type]['bullet_lifetime'])
-	elif type == 'east' and Input.is_action_just_pressed("eastship_fire_alt"):
-		emit_signal('fire', 'reversed', stats[type]['bullet_lifetime'])
+	if not dying:
+		if type == 'west':
+			fire_t += delta
+			if fire_t > 0.1:
+				fire_t -= 0.1
+				emit_signal('fire', 'continuous', stats[type]['bullet_lifetime'])
+		
+		if type == 'north' and Input.is_action_just_pressed("northship_fire") or type == 'east' and Input.is_action_just_pressed("eastship_fire"):
+			emit_signal('fire', 'normal', stats[type]['bullet_lifetime'])
+		elif type == 'east' and Input.is_action_just_pressed("eastship_fire_alt"):
+			emit_signal('fire', 'reversed', stats[type]['bullet_lifetime'])
 	
 
 signal damaged

@@ -68,8 +68,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 6, 9, 12, 15, 16, 18, 26, 30, 34, 36, 40, 45, 46, 47, 48, 50, 52, 64, 70, 78, 82, 84, 86, 87, 88, 92, 100 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 6, 9, 12, 15, 16, 18, 26, 30, 34, 36, 40, 45, 46, 47, 48, 50, 52, 64, 68, 70, 74, 78, 82, 84, 86, 87, 88, 92, 100 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "spawn_blob"
@@ -125,8 +125,14 @@ tracks/1/keys = {
 "args": [  ],
 "method": "spawn_flower"
 }, {
+"args": [ null ],
+"method": "spawn_blob"
+}, {
 "args": [  ],
 "method": "spawn_flower"
+}, {
+"args": [ null ],
+"method": "spawn_blob"
 }, {
 "args": [  ],
 "method": "spawn_flower"
@@ -274,7 +280,12 @@ anims/level = SubResource( 7 )
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 bus = "BGM"
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 [connection signal="damaged" from="Ship" to="." method="_on_Ship_damaged"]
 [connection signal="fire" from="Ship" to="." method="_on_Ship_fire"]
 [connection signal="body_entered" from="DeathWall" to="." method="_on_DeathWall_body_entered"]
 [connection signal="dead" from="CanvasLayer/LifeCounter" to="." method="_on_LifeCounter_dead"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

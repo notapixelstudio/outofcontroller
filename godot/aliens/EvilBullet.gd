@@ -17,5 +17,4 @@ func _on_Bullet_body_entered(body):
 	queue_free()
 	
 func harm(body):
-	if body is Bullet:
-		queue_free()
+	queue_free()

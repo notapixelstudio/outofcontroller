@@ -18,6 +18,8 @@ func set_ship_type(type):
 func _on_1UP_picked(type):
 	set_ship_type(type)
 	$CanvasLayer/LifeCounter.reset()
+	$Ship.dying = false
+	$DeathTimer.stop()
 	
 func _on_DeathWall_body_entered(body):
 	body.queue_free()
@@ -60,7 +62,8 @@ func _on_Ship_damaged():
 	$CanvasLayer/LifeCounter.lose_life(1)
 	
 func _on_LifeCounter_dead():
-	$Ship.queue_free()
+	$Ship.dying = true
+	$DeathTimer.start(5.0)
 	
 const field_w = 832
 const margin = 48
@@ -90,3 +93,7 @@ func spawn_1up(type):
 	object.type = type
 	object.connect('picked', self, '_on_1UP_picked')
 	
+
+
+func _on_DeathTimer_timeout():
+	$Ship.queue_free()
