@@ -72,10 +72,15 @@ func add_score(amount, where):
 	add_child(object)
 	object.score = amount
 	
+const Squish = preload('res://Squish.tscn')
 func alien_dead(amount, where):
 	$SblorchSFX.stream.loop = false
 	$SblorchSFX.play()
 	add_score(amount, where)
+	
+	var object = Squish.instance()
+	add_child(object)
+	object.position = where
 	
 func _on_DeathWall_body_entered(body):
 	body.queue_free()
